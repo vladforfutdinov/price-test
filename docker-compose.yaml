@@ -1,0 +1,48 @@
+version: '2'
+
+services:
+  provider:
+    build: ./provider
+    image: provider
+    restart: always
+    ports:
+      - "9001:9001"
+    environment:
+      PORT: 9001
+      INTERVAL: 1 #seconds
+
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+
+  processor:
+    build: ./processor
+    image: processor
+    restart: always
+    depends_on:
+      - "provider"
+      - "mongo"
+    ports:
+      - "9002:9002"
+    environment:
+      API_PORT: 9002
+      PROVIDER_URI: "provider"
+      PROVIDER_PORT: 9001
+      MONGODB_USERNAME: root
+      MONGODB_PASSWORD: example
+      MONGODB_URL: mongodb://mongo:27017/
+
+  # app:
+  #   build: ./app
+  #   image: app
+  #   restart: always
+  #   depends_on:
+  #     - "processor"
+  #   ports:
+  #     - "9000:80"
+  #   environment:
+  #     REACT_APP_API_URI: "localhost"
+  #     REACT_APP_API_PORT: 9002

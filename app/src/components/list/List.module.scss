@@ -1,0 +1,23 @@
+.list {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin: 1rem;
+
+  .link {
+    text-transform: capitalize;
+    text-decoration: none;
+    color: #333;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid transparent;
+
+    &:hover:not(.isCurrent) {
+      border-color: #aaa;
+    }
+  }
+
+  .isCurrent {
+    color: #333;
+    border-color: #333;
+  }
+}

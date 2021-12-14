@@ -1,0 +1,51 @@
+$text-color: #333;
+
+.prices {
+  max-width: fit-content;
+  color: $text-color;
+  text-align: center;
+
+  .subtitle {
+    padding: 0.5rem 0 0;
+    margin: 0.5rem 0;
+    font-size: 1.2rem;
+  }
+
+  .table {
+    display: table;
+    margin: 0 auto;
+    border: solid #eee;
+    border-width: 1px 0;
+  }
+
+  .current .row {
+    display: inline;
+  }
+
+  .row {
+    display: table-row;
+    text-align: center;
+
+    span {
+      font-weight: normal;
+      padding: 0.3rem;
+      display: table-cell;
+      text-align: left;
+      width: 50%;
+
+      &:first-child {
+        font-size: 0.8em;
+        text-align: right;
+        max-width: 20%;
+      }
+    }
+
+    .number {
+      font-family: Monaco, 'Courier New', Courier, monospace;
+    }
+  }
+
+  .refresh {
+    margin-top: 1rem;
+  }
+}
